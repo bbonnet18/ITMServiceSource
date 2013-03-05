@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Testing</title>
+
+    <script type="text/javascript" src="Scripts/jquery-1.7.1.min.js" ></script>
+     <script type="text/javascript">
+         $(document).ready(function () {
+             //use api/item/item for posts with media
+             // data for build{ title: "steve",tags:"tag 1",manifestPath:"1.json",buildID:1,previewImagePath:"thumbView/thumb.png"}
+
+             // to post an individual item
+             //$.post("api/item/item", { title: "steve", caption: "this is the new one", buildItemID: 2, buildID: 7, orderNumber: 1, timeStamp: "10/17/1978", type: "image", status: "edit", fileName: "1_3.mov", thumbnailPath: "1_3_thumb.png" }, function (data) {
+             //    alert("returned something from the server" + data);
+             //})
+
+             //.error("tell them about the error");
+
+         });
+
+         function getByID(id) {
+             
+         }
+
+         function getAll() {
+             $.ajax("api/build",function(data){
+                 var test = "";
+             })
+            .done(function(){
+                alert("SUCCESS Getting All");
+            })
+
+            .error("tell them about the error");
+    
+         }
+
+         //function deleteBuild(id) {
+             
+         //}
+
+         function postBuild() {
+             
+         // data for build{ title: "steve",tags:"tag 1",manifestPath:"1.json",buildID:1,previewImagePath:"thumbView/thumb.png"}
+             $.post("api/Build/media", { title: "Ben", tags: "tag 2", manifestPath: "2.json", buildID: 3, previewImagePath: "thumbView/thumb.png", applicationID: 3 }, function (data) {
+             alert("returned something from the server" + data);
+         })
+
+         .error("tell them about the error");
+           
+         }
+
+         function postBuildItems() {
+             $.post("api/Item/item", { title: "start title", fileName: "file1.jpg", orderNumber: 2, status: "completed", thumbnailPath: "/thumb_1.jpg", timeStamp: "10/17/1978", type: "image", buildID: "buildID_01_01_01" }, function (data) {
+                 alert("data returned" + data);
+             })
+
+             .error("tell us there's an error");
+
+         }
+
+             /*
+             public string caption { get; set; }
+        public string fileName { get; set; }
+        public int orderNumber { get; set; }
+        public string status { get; set; }
+        public string thumbnailPath { get; set; }
+        public DateTime timeStamp { get; set; }
+        public string title { get; set; }
+        public string type { get; set; }
+        public int buildID { get; set; }
+             */
+    </script>
+</head>
+
+   
+<body>
+    <h1>Complex Type</h1>
+<form id="form1" method="post" action="api/Item" 
+    enctype="multipart/form-data" >
+    <div>
+        <label for="status">Status</label>
+    </div>
+    <div>
+        <input name="status" type="text" />
+        <br />
+        <br />
+    </div>
+    <div>
+        <label for="date">Date</label>
+        <input type="datetime" name="date" />
+    </div>
+    <div>
+        <label for="caption">Caption</label>
+        <input type="text" name="caption" />
+    </div>
+    <div>
+        <label for="image1">Image Upload</label>
+        <input type="file"  name="image1" />
+    </div>
+    <div>
+        <input type="submit" value="Submit" />
+    </div>
+</form>
+    <div>
+        <input type="button" onclick="deleteBuild(7)" value="delete build" />
+        <input type="button" onclick="postBuild()" value="post build" />
+        <input type="button" onclick="getByID(8)" value="get build by id" />
+        <input type="button" onclick="getAll()" value="get all builds" />
+    </div>
+
+
+</body>
+</html>
